@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "Se este software ajudar seu trabalho, cite o projeto usando estes metadados."
+title: "Inteligência Pragmática"
+type: software
+authors:
+  - family-names: "Moda"
+    given-names: "Moacir"
+version: 0.1.0
+date-released: 2026-07-31
+license: MIT
+repository-code: "https://github.com/moacirmoda/inteligencia-pragmatica"
+url: "https://github.com/moacirmoda/inteligencia-pragmatica"

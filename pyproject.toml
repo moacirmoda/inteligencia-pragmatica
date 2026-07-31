@@ -1,0 +1,56 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "inteligencia-pragmatica"
+version = "0.1.0"
+description = "Framework local-first para transformar objetivos em ação pragmática"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Moacir Moda" }]
+keywords = ["agents", "cli", "local-first", "planning", "productivity", "yaml"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Office/Business",
+]
+dependencies = ["PyYAML>=6.0.2,<7"]
+
+[project.urls]
+Homepage = "https://github.com/moacirmoda/inteligencia-pragmatica"
+Repository = "https://github.com/moacirmoda/inteligencia-pragmatica"
+Issues = "https://github.com/moacirmoda/inteligencia-pragmatica/issues"
+
+[project.optional-dependencies]
+dev = ["pytest>=8.3,<9", "ruff>=0.11,<1"]
+
+[project.scripts]
+pragmatic = "pragmatic.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pragmatic"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"method" = "pragmatic/_data/method"
+"templates" = "pragmatic/_data/templates"
+"schemas" = "pragmatic/_data/schemas"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]

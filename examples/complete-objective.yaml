@@ -1,0 +1,88 @@
+schema_version: 1
+metadata:
+  id: aprender-piano
+  title: Aprender piano com apresentação pública
+  created_at: '2026-07-31T12:00:00+00:00'
+  updated_at: '2026-07-31T12:00:00+00:00'
+  phase: executar
+  state: pronto
+  depth: standard
+  host_workspace: /tmp/example-workspace
+  source_documents: []
+pgg:
+  statement: Preparar e apresentar três peças em oito semanas
+  desired_outcome: Apresentar três peças para convidados ao fim de oito semanas
+  controllable_measure: Praticar cinco sessões de 40 minutos por semana e gravar uma execução semanal
+  deadline: '2026-09-25'
+  win_even_if_fail: Construir repertório, técnica e rotina de prática
+  four_cs:
+    concise: {status: present, rationale: Prazo de oito semanas}
+    courageous: {status: present, rationale: Apresentação pública}
+    controllable: {status: present, rationale: Sessões e gravações dependem do praticante}
+    committed: {status: present, rationale: Convites serão enviados}
+  three_is:
+    intensify_impact: Apresentar três peças
+    implement_superlative: null
+    integrate_interests: Compartilhar música com amigos
+  commitments:
+    - {type: social, target: controllable_measure, description: Enviar convites e compartilhar gravações}
+dominant_reason: Desenvolver expressão musical e disciplina deliberada
+pmv:
+  result: Apresentação de três peças concluída até a data
+  reason: Desenvolver expressão musical e disciplina deliberada
+  reference:
+    principles: [prática deliberada, feedback rápido]
+    examples: [recitais de iniciantes]
+    guides: [currículo definido com professor]
+    experts: [professor de piano]
+  direction:
+    - Selecionar peças
+    - Dividir cada peça em trechos
+    - Praticar e gravar semanalmente
+    - Fazer ensaio geral
+    - Apresentar
+  resources:
+    time: [cinco sessões semanais]
+    money: [aulas]
+    materials: [piano, partituras, gravador]
+    people: [professor]
+    information: [dedilhado e técnica]
+  constraints: [não reduzir sono para praticar, não incluir peça acima do nível atual]
+  risks:
+    - description: Interrupção da rotina
+      threat: Agenda variável
+      vulnerability: Sessões sem horário protegido
+      mitigation: Reservar horários recorrentes
+      plan_b: Reduzir sessão para 20 minutos mantendo frequência
+  responsibility:
+    owner: praticante
+    steps:
+      - {step: feedback semanal, owner: professor}
+gaps: []
+hypotheses:
+  - {statement: Cinco sessões semanais são suficientes, test: Avaliar gravações nas duas primeiras semanas}
+decisions:
+  - {statement: Manter três peças, criterion: desafio compatível com oito semanas}
+facts:
+  - {statement: Há acesso diário a um piano, evidence: confirmado pelo praticante}
+responsibilities: []
+metrics:
+  outcome:
+    - {name: peças apresentadas, target: 3}
+  controllable:
+    - {name: sessões por semana, target: 5}
+execution:
+  current_cycle:
+    skill: focus
+    objective: Aprender o primeiro trecho da peça inicial
+    tatt:
+      task: Praticar compassos 1 a 8
+      target: Tocar sem interrupção em andamento lento
+      tangible: Gravação de uma execução completa
+      timebox_minutes: 40
+    status: not_started
+    evidence: []
+    dpa: {kind: null, note: null}
+    next_action: {description: null, owner: null, due: null}
+next_review: '2026-08-07'
+review_history: []

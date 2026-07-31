@@ -1,0 +1,53 @@
+cases:
+  - id: double-recurring-revenue
+    request: Aplicar o método completo para dobrar uma receita recorrente mensal.
+    expected_mode: completo
+    expected_depth: deep
+    impact: high
+    reversibility: low
+    must_distinguish: [outcome_metric, controllable_metrics, facts, hypotheses, gaps]
+    forbidden: [invent_unknown_components, invent_deadline, invent_capacity]
+  - id: executive-hire
+    request: Planejar a contratação de uma liderança executiva.
+    expected_mode: planejar
+    expected_depth: deep
+    impact: high
+    reversibility: low
+    must_use: [8Rs, premortem, CAA, simulation]
+  - id: learn-piano
+    request: Transforme aprender piano em um PGG.
+    expected_mode: definir
+    expected_depth: standard
+    impact: medium
+    reversibility: medium
+    must_use: [4Cs, controllable_measure, commitment]
+  - id: write-book
+    request: Aplicar Inteligência Pragmática ao objetivo de escrever um livro.
+    expected_mode: completo
+    expected_depth: deep
+    impact: high
+    reversibility: low
+    must_use: [constraints, references, feedback_cycles]
+  - id: choose-city
+    request: Quero escolher uma cidade para morar.
+    expected_mode: completo
+    expected_depth: deep
+    impact: high
+    reversibility: low
+    must_use: [CAA, alternatives, simulation, constraints]
+  - id: short-session
+    request: Qual é a próxima sessão pragmática para responder cinco e-mails importantes?
+    expected_mode: executar
+    expected_depth: light
+    impact: low
+    reversibility: high
+    short_task: true
+    must_use: [TATT, DPA]
+    forbidden: [force_all_8Rs]
+  - id: stalled-review
+    request: Revise meu progresso; o objetivo não está avançando.
+    expected_mode: revisar
+    expected_depth: standard
+    impact: medium
+    reversibility: medium
+    must_use: [feedback, 3Ps, RID, DPA]

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Aplicar Inteligência Pragmática"
+  short_description: "Transforme objetivos em progresso pragmático"
+  default_prompt: "Use $aplicar-inteligencia-pragmatica para estruturar e avançar este objetivo."

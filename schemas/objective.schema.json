@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.invalid/inteligencia-pragmatica/objective.schema.json",
+  "title": "Objetivo de Inteligência Pragmática",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "metadata", "pgg", "pmv", "gaps", "hypotheses", "decisions", "facts", "metrics", "execution", "review_history"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "metadata": {"type": "object"},
+    "pgg": {"type": "object"},
+    "dominant_reason": {"type": ["string", "null"]},
+    "pmv": {"type": "object"},
+    "gaps": {"type": "array"},
+    "hypotheses": {"type": "array"},
+    "decisions": {"type": "array"},
+    "facts": {"type": "array"},
+    "responsibilities": {"type": "array"},
+    "metrics": {"type": "object"},
+    "execution": {"type": "object"},
+    "next_review": {"type": ["string", "null"]},
+    "review_history": {"type": "array"}
+  }
+}

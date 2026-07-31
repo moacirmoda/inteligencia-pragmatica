@@ -1,0 +1,71 @@
+schema_version: 1
+metadata:
+  id: null
+  title: null
+  created_at: null
+  updated_at: null
+  phase: definir
+  state: rascunho
+  depth: standard
+  host_workspace: null
+  source_documents: []
+pgg:
+  statement: null
+  desired_outcome: null
+  controllable_measure: null
+  deadline: null
+  win_even_if_fail: null
+  four_cs:
+    concise: {status: unknown, rationale: null}
+    courageous: {status: unknown, rationale: null}
+    controllable: {status: unknown, rationale: null}
+    committed: {status: unknown, rationale: null}
+  three_is:
+    intensify_impact: null
+    implement_superlative: null
+    integrate_interests: null
+  commitments: []
+dominant_reason: null
+pmv:
+  result: null
+  reason: null
+  reference:
+    principles: []
+    examples: []
+    guides: []
+    experts: []
+  direction: []
+  resources:
+    time: []
+    money: []
+    materials: []
+    people: []
+    information: []
+  constraints: []
+  risks: []
+  responsibility:
+    owner: null
+    steps: []
+gaps: []
+hypotheses: []
+decisions: []
+facts: []
+responsibilities: []
+metrics:
+  outcome: []
+  controllable: []
+execution:
+  current_cycle:
+    skill: null
+    objective: null
+    tatt:
+      task: null
+      target: null
+      tangible: null
+      timebox_minutes: null
+    status: not_started
+    evidence: []
+    dpa: {kind: null, note: null}
+    next_action: {description: null, owner: null, due: null}
+next_review: null
+review_history: []

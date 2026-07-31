@@ -1,0 +1,183 @@
+method:
+  id: inteligencia-pragmatica
+  version: 1
+  language: pt-BR
+  principle: "objetivo -> informação -> ação -> feedback"
+  terminal_rule: DPA
+
+severities:
+  structural_error:
+    blocks: always
+    meaning: documento inválido ou estado impossível
+  blocking_gap:
+    blocks: phase_transition
+    meaning: informação necessária para avançar, ainda desconhecida
+  quality_warning:
+    blocks: never
+    meaning: conteúdo presente, mas fraco ou pouco verificável
+  recommendation:
+    blocks: never
+    meaning: melhoria útil, não obrigatória
+  deferred:
+    blocks: never
+    meaning: informação ainda não necessária na fase atual
+
+phases:
+  definir:
+    states: [rascunho, pronto]
+    artifact: pgg
+    required_now: [metadata.title, pgg.desired_outcome, pgg.controllable_measure]
+    checkpoint: confirmar_pgg
+    exit_criteria:
+      - distinguir resultado desejado de esforço controlável
+      - avaliar os 4Cs sem inventar respostas
+  planejar:
+    states: [rascunho, pronto]
+    artifact: pmv
+    required_now:
+      - pmv.result
+      - pmv.reason
+      - pmv.direction
+      - pmv.constraints
+      - pmv.risks
+      - pmv.responsibility.owner
+    checkpoint: confirmar_pmv
+    exit_criteria:
+      - responsável único definido
+      - riscos prioritários têm mitigação e plano B
+  executar:
+    states: [pronto, em_andamento, bloqueado]
+    artifact: execution.current_cycle
+    required_now:
+      - execution.current_cycle.tatt.task
+      - execution.current_cycle.tatt.tangible
+      - execution.current_cycle.tatt.timebox_minutes
+    checkpoint: fechar_dpa
+    exit_criteria:
+      - produzir evidência tangível
+      - encerrar com decisão, próxima ação ou arquivamento
+  revisar:
+    states: [aguardando, em_revisao, concluido]
+    artifact: review_history
+    required_now: [next_review]
+    checkpoint: registrar_feedback
+    exit_criteria:
+      - comparar medidas controláveis e de resultado
+      - atualizar fatos, hipóteses, decisões, riscos e plano
+      - definir dono e prazo para a próxima ação
+  arquivado:
+    states: [arquivado]
+    artifact: metadata
+    required_now: []
+    checkpoint: nenhum
+    exit_criteria: []
+
+transitions:
+  - from: definir
+    to: planejar
+    requires: [pgg.desired_outcome, pgg.controllable_measure]
+  - from: planejar
+    to: executar
+    requires: [pmv.result, pmv.reason, pmv.direction, pmv.responsibility.owner]
+  - from: executar
+    to: revisar
+    requires: [execution.current_cycle.dpa.kind]
+  - from: revisar
+    to: executar
+    requires: [execution.current_cycle.next_action.owner, execution.current_cycle.next_action.due]
+  - from: revisar
+    to: arquivado
+    requires: [execution.current_cycle.dpa.kind]
+
+artifacts:
+  pgg:
+    purpose: transformar desejo em Projeto Ganha-Ganha
+    components: [conciso, corajoso, controlavel, comprometido]
+    courage_levers: [intensificar_impacto, implementar_superlativo, integrar_interesses]
+    commitments: [social, financeiro, ambiental]
+  pmv:
+    purpose: plano mínimo viável e vivo
+    components: [resultado, razao, referencia, rumo, recursos, restricoes, riscos, responsabilidade]
+    reference_model: [principios, exemplos, guias, experts]
+  pragmatic_session:
+    purpose: bloco focado que produz progresso tangível
+    model: [tarefa, alvo, tangivel, tempo]
+  review:
+    purpose: converter feedback em ajuste ou encerramento
+    terminal_options: [decisao, proxima_acao, arquivamento]
+
+execution_skills:
+  focus:
+    route_when: objetivo e informação existem, mas a ação não avança
+    models:
+      RID: [recompensas, remover_inercia, distracoes]
+      TATT: [tarefa, alvo, tangivel, tempo]
+  research:
+    route_when: faltam informações relevantes
+    models:
+      PERG: [pergunte, explore, revise, guarde]
+    policy: priorizar modo solução; usar expansão para descobrir perguntas e opções
+  understand:
+    route_when: há informação, mas falta compreensão aplicável
+    knowledge: [factual, conceitual, procedural]
+    models:
+      DEAP: [definir, explicar, aplicar, prever]
+    process: [escrever, testar, condensar]
+  ideate:
+    route_when: faltam alternativas ou abordagens
+    inputs: [referencias, restricoes, reframes]
+    models:
+      4Is: [identificar, idear, incubar, instituir]
+  decide:
+    route_when: existem alternativas e é preciso escolher
+    high_impact: [potencial, periodo, pessoas]
+    models:
+      CAA: [criterios, alternativas, analise]
+    alternative_rule: "2-25"
+    analysis_levels: [espontanea, planilha, simulacao]
+    policy: julgar qualidade da decisão separadamente do resultado observado
+  communicate:
+    route_when: é preciso informar, alinhar ou persuadir
+    anatomy: [consumidor, comunicador, canal, conteudo]
+    audience_model:
+      PROBLEM: [problemas, resultados, obstaculos, bagagem, licoes, expectativas, momento]
+    follow_up_3Ps: [progresso, problemas, prioridade]
+    sales_6Ps: [puxar_atencao, problema, promessa, prova, proposta, passar_por_objecoes]
+    ABCCC: [atencao, beneficio, credibilidade, curiosidade, chamada_para_acao]
+
+routing:
+  modes:
+    definir: ["pgg", "definir objetivo", "transformar objetivo"]
+    planejar: ["pmv", "8rs", "planejar"]
+    executar: ["próxima sessão", "sessão pragmática", "executar", "próxima ação"]
+    revisar: ["revisar progresso", "não está avançando", "atualizar plano"]
+    completo: ["aplicar inteligência pragmática", "framework completo"]
+  depth:
+    light:
+      when: baixo impacto e facilmente reversível
+      required_pmvs: [result, reason, direction, responsibility]
+    standard:
+      when: impacto moderado ou reversibilidade média
+      required_pmvs: all
+    deep:
+      when: alto impacto ou difícil de reverter
+      required_pmvs: all
+      extras: [premortem, multiple_references, plan_b, analysis_level_3]
+  short_task_policy: não forçar PGG ou 8Rs; criar TATT e fechar em DPA
+
+quality_criteria:
+  facts: devem apontar para fonte ou evidência quando material
+  hypotheses: devem ser testáveis e não podem ser apresentadas como fatos
+  decisions: devem registrar critério, responsável e data quando relevantes
+  commitments: devem preferencialmente incidir sobre ação controlável
+  actions: toda próxima ação deve ter dono e prazo
+  gaps: devem declarar pergunta, fase bloqueada e status
+  metrics: separar medidas de resultado de medidas controláveis
+  living_plan: revisão pode alterar qualquer seção preservando histórico
+
+optional_by_context:
+  - [pgg.three_is, apenas quando ampliar coragem ajuda]
+  - [pmv.reference, opcional em tarefa curta]
+  - [pmv.resources, opcional em tarefa curta]
+  - [communication.sales_6Ps, apenas para persuasão]
+  - [decision.analysis_level_3, apenas para decisões importantes e irreversíveis]
